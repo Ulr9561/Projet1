@@ -41,15 +41,20 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $request->validate([
             'name' => 'required|string|max:255',
         ]);
-
+        // if(Category::where('name', '=', $request->name)->firstOrFail()) {
+        //     return view('categories.create')->with('success', 'La catégorie existe déjà');
+        // }
         Category::create([
             'name' => $request->name,
         ]);
 
-        return redirect()->route('category.index')->with('success', 'Catégorie créée avec succès');
+        // return redirect()->route('category.index')->with('success', 'Catégorie créée avec succès');
+
+        return redirect()->back()->with('success', 'Catégorie créée avec succès');
     }
 
     /**

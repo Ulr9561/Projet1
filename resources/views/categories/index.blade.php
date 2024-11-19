@@ -4,7 +4,7 @@
 @section('content')
     <div class="flex justify-between items-center">
         <h1 class="text-2xl font-bold">Categories</h1>
-        <button class="flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+        <button class="flex items-center space-x-2 bg-green-800 text-white px-4 py-2 rounded-md hover:bg-green-800">
             <a href="{{ route('category.create') }}" class="no-underline flex space-x-2 items-center">
                 <svg class="w-5 h-5" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
@@ -13,6 +13,7 @@
             </a>
         </button>
     </div>
+
 
     <form class="flex min-w-36 w-full align-content-end items-center justify-end gap-2" onsubmit="handleSubmit()">
         <div class="relative w-full max-w-xs">
@@ -47,22 +48,22 @@
                             &#9650;&#9660;
                         </span>
                     </th>
-                    <th class="px-4 py-2 text-left text-gray-600 dark:text-gray-300">Créé le</th>
-                    <th class="px-4 py-2 text-left text-gray-600 dark:text-gray-300">Modifié le</th>
+                    {{-- <th class="px-4 py-2 text-left text-gray-600 dark:text-gray-300">Créé le</th>
+                    <th class="px-4 py-2 text-left text-gray-600 dark:text-gray-300">Modifié le</th> --}}
                     <th class="px-4 py-2 text-left text-gray-600 dark:text-gray-300">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($categories as $category)
+                @foreach ($categories as $key => $category)
                     <tr class="border-t border-gray-300 dark:border-gray-700">
-                        <td class="px-4 py-2 text-gray-700 dark:text-gray-200">{{ $category->id }}</td>
+                        <td class="px-4 py-2 text-gray-700 dark:text-gray-200">{{ ++$key }}</td>
                         <td class="px-4 py-2 text-gray-700 dark:text-gray-200">{{ $category->name }}</td>
-                        <td class="px-4 py-2 text-gray-700 dark:text-gray-200">{{ $category->created_at }}</td>
-                        <td class="px-4 py-2 text-gray-700 dark:text-gray-200">{{ $category->updated_at }}</td>
+                        {{-- <td class="px-4 py-2 text-gray-700 dark:text-gray-200">{{ $category->created_at }}</td>
+                        <td class="px-4 py-2 text-gray-700 dark:text-gray-200">{{ $category->updated_at }}</td> --}}
                         <td class="px-4 py-2 text-gray-700 dark:text-gray-200 flex space-x-2">
 
                             <a href="{{ route('category.edit', $category->id) }}"
-                                class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md inline-flex items-center">
+                                class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md inline-flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                     stroke="currentColor" class="w-4 h-4 mr-1">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -91,8 +92,6 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="flex gap-2 mt-8 items-center space-x-2 justify-center">
-            {{ $categories->links() }}
-        </div>
+
     </div>
 @endsection
