@@ -5,7 +5,7 @@
 @section('content')
     <div class="max-w-2xl mx-auto mt-10 bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
         <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-6">Créer un article</h3>
-        <form action="{{ route('article.store', $article->id) }}" method="POST" class="space-y-6">
+        <form action="{{ route('article.store') }}" method="POST" class="space-y-6">
             @csrf
             <div class="min-h-16">
                 <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nom de

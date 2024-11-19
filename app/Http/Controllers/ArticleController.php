@@ -11,10 +11,24 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::with('category')->get();
-        // dd($articles);
+        $articles = Article::with('category');
+        $sort_by = $request->get('sort_by', 'id');
+        $sort_direction = $request->get('sort_direction', 'asc');
+
+        if($request->has('search')) {
+            $articles->where('name', 'like', '%' . $request->search . '%')
+                ->orWhereHas('category', function ($q) use ($request) {
+                    $q->where('name', 'like', '%' . $request->search . '%');
+                });
+        }
+
+        if ($sort_by && $sort_direction) {
+            $articles = $articles->orderBy($sort_by, $sort_direction);
+        }
+
+        $articles = $articles->paginate(5);
         return view('articles.index', ['articles' => $articles]);
     }
 
@@ -45,7 +59,7 @@ class ArticleController extends Controller
             'category_id' => $request->category_id,
         ]);
 
-        return redirect()->route('articles.index')->with('success', 'Article created successfully!');
+        return redirect()->route('article.index')->with('success', 'Article created successfully!');
     }
 
     /**
@@ -80,7 +94,7 @@ class ArticleController extends Controller
             ]
         );
 
-        return redirect()->route('articles.index')->with('success', 'Article updated successfully!');
+        return redirect()->route('article.index')->with('success', 'Article updated successfully!');
     }
 
     /**
@@ -91,6 +105,6 @@ class ArticleController extends Controller
         $article = Article::with('category')->find($id);
         $article->delete();
 
-        return redirect()->route('articles.index')->with('success', 'Article deleted successfully!');
+        return redirect()->route('article.index')->with('success', 'Article deleted successfully!');
     }
 }

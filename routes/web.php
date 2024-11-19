@@ -4,16 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategorieController;
 
-Route::get('/', [ArticleController::class, 'index'])->name('articles.index');
 
-Route::get('/article/create', [ArticleController::class, 'create'])->name('article.create');
-Route::post('/article', [ArticleController::class,'store'])->name('article.store');
 
-Route::get('/article/{id}/edit', [ArticleController::class, 'edit'])->name('article.edit');
-Route::put('/article/{id}', [ArticleController::class, 'update'])->name('article.update');
+Route::resource('article', ArticleController::class);
 
-Route::delete('/article/{id}', [ArticleController::class, 'destroy'])->name('article.destroy');
-
+Route::get("/", function () {
+    return redirect()->route('article.index');
+});
 
 // Categories
 Route::get('/categories', [CategorieController::class, 'index'])->name('category.index');

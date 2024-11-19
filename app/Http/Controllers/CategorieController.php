@@ -10,9 +10,21 @@ class CategorieController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();
+        $categories = Category::query();
+        $sort_by = $request->get('sort_by');
+        $sort_direction = $request->get('sort_direction');
+
+        if ($sort_by && $sort_direction) {
+            $categories = $categories->orderBy($sort_by, $sort_direction);
+        }
+
+        if($request->has('search')) {
+            $categories = $categories->where('name', 'LIKE', '%' . $request->get('search') . '%');
+        }
+
+        $categories = $categories->paginate(5);
         return view('categories.index', compact('categories'));
     }
 
@@ -76,6 +88,6 @@ class CategorieController extends Controller
     public function destroy(string $id)
     {
         Category::destroy($id);
-        return redirect()->route('category.index')->with('success', 'Catégorie supprimée avec succès');	
+        return redirect()->route('category.index')->with('success', 'Catégorie supprimée avec succès');
     }
 }
