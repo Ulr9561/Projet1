@@ -23,7 +23,12 @@
             <nav class="hidden md:flex space-x-4">
                 <a href="/categories" class="text-gray-600 dark:text-gray-300 hover:text-blue-500">Catégories</a>
                 <a href="/" class="text-gray-600 dark:text-gray-300 hover:text-blue-500">Articles</a>
+
             </nav>
+
+            @if(Auth::user())
+                <a href="{{ route('user.logout')}}" class="text-gray-600 dark:text-gray-300 flex justify-end hover:text-blue-500">Logout</a>
+            @endif
         </div>
     </header>
     <main class="container mx-auto space-y-5 p-5">

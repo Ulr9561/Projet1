@@ -43,7 +43,7 @@ class CategorieController extends Controller
     {
         // dd($request);
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|exists:categories,name',
         ]);
         // if(Category::where('name', '=', $request->name)->firstOrFail()) {
         //     return view('categories.create')->with('success', 'La catégorie existe déjà');
