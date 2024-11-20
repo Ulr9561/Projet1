@@ -24,7 +24,7 @@ class Role extends Model
         }
 
         try {
-            $roleModel = Role::where('role', '=', $role);
+            $roleModel = Role::where('role', '=', $role)->first();
             if (!$roleModel) {
                 $roleModel = self::create([
                     'role' => $role,

@@ -4,7 +4,7 @@
 @section('content')
     <div class="flex justify-between items-center">
         <h1 class="text-2xl font-bold">Categories</h1>
-        @if (Auth::user()->role == 'admin')
+        @if (Auth::user()->role->role == 'admin')
             <button class="flex items-center space-x-2 bg-green-800 text-white px-4 py-2 rounded-md hover:bg-green-800">
                 <a href="{{ route('category.create') }}" class="no-underline flex space-x-2 items-center">
                     <svg class="w-5 h-5" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
@@ -52,7 +52,7 @@
                     </th>
                     {{-- <th class="px-4 py-2 text-left text-gray-600 dark:text-gray-300">Créé le</th>
                     <th class="px-4 py-2 text-left text-gray-600 dark:text-gray-300">Modifié le</th> --}}
-                    @if (Auth::user()->role == 'admin')
+                    @if (Auth::user()->role->role == 'admin')
                         <th class="px-4 py-2 text-left text-gray-600 dark:text-gray-300">Actions</th>
                     @endif
                 </tr>
@@ -65,7 +65,7 @@
                         {{-- <td class="px-4 py-2 text-gray-700 dark:text-gray-200">{{ $category->created_at }}</td>
                         <td class="px-4 py-2 text-gray-700 dark:text-gray-200">{{ $category->updated_at }}</td> --}}
                         <td
-                            class="px-4 py-2 {{ Auth::user()->role == 'admin' ? 'block' : 'hidden' }} text-gray-700 dark:text-gray-200 flex space-x-2">
+                            class="px-4 py-2 {{ Auth::user()->role->role == 'admin' ? 'block' : 'hidden' }} text-gray-700 dark:text-gray-200 flex space-x-2">
                             <a href="{{ route('category.edit', $category->id) }}"
                                 class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md inline-flex items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
