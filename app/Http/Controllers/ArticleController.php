@@ -17,7 +17,7 @@ class ArticleController extends Controller
         $sort_by = $request->get('sort_by', 'id');
         $sort_direction = $request->get('sort_direction', 'asc');
 
-        if($request->has('search')) {
+        if ($request->has('search')) {
             $articles->where('name', 'like', '%' . $request->search . '%')
                 ->orWhereHas('category', function ($q) use ($request) {
                     $q->where('name', 'like', '%' . $request->search . '%');
@@ -52,6 +52,10 @@ class ArticleController extends Controller
             'category_id' => 'required|exists:categories,id',
 
         ]);
+
+        if (Article::where('name', '=', $request->name)->first()) {
+            return view('articles.create')->with('success', "L'article existe déjà");
+        }
 
         Article::create([
             'name' => $request->name,

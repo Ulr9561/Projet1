@@ -6,8 +6,8 @@
 @section('content')
     <div class="flex justify-between items-center">
         <h1 class="text-2xl font-bold">Articles</h1>
-        @if (Auth::user()->role == 'admin')
-            <button class="flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+        @if (Auth::user()->role->role == 'admin')
+            <button class="flex items-center space-x-2 bg-green-700 text-white px-4 py-2 rounded-md hover:bg-green-600 transition-colors duration-200">
                 <a class="no-underline flex" href="{{ route('article.create') }}">
                     <svg class="w-5 h-5" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                         stroke="currentColor">
@@ -66,7 +66,7 @@
                             &#9650;&#9660;
                         </span>
                     </th>
-                    @if (Auth::user()->role == 'admin')
+                    @if (Auth::user()->role->role == 'admin')
                         <th class="px-4 py-2 text-left text-gray-600 dark:text-gray-300">Actions</th>
                     @endif
                 </tr>
@@ -84,10 +84,10 @@
                                 Pas de catégorie
                             @endif
                         </td>
-                        @if (Auth::user()->role == 'admin')
+                        @if (Auth::user()->role->role == 'admin')
                             <td class="px-4 py-2 text-gray-600 dark:text-gray-400 flex space-x-2">
                                 <a href="{{ route('article.edit', $article->id) }}"
-                                    class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md inline-flex items-center">
+                                    class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md inline-flex items-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor" class="w-4 h-4 mr-1">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

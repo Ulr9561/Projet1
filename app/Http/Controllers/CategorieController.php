@@ -20,7 +20,7 @@ class CategorieController extends Controller
             $categories = $categories->orderBy($sort_by, $sort_direction);
         }
 
-        if($request->has('search')) {
+        if ($request->has('search')) {
             $categories = $categories->where('name', 'LIKE', '%' . $request->get('search') . '%');
         }
 
@@ -41,18 +41,16 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $request->validate([
-            'name' => 'required|string|max:255|exists:categories,name',
-        ]);
-        // if(Category::where('name', '=', $request->name)->firstOrFail()) {
-        //     return view('categories.create')->with('success', 'La catégorie existe déjà');
-        // }
+            'name' => 'required|string|max:255',
+        ])
+        ;
+        if (Category::where('name', '=', $request->name)->first()) {
+            return view('categories.create')->with('success', 'La catégorie existe déjà');
+        }
         Category::create([
-            'name' => $request->name,
+            'name' => $request->name
         ]);
-
-        // return redirect()->route('category.index')->with('success', 'Catégorie créée avec succès');
 
         return redirect()->back()->with('success', 'Catégorie créée avec succès');
     }
@@ -84,7 +82,7 @@ class CategorieController extends Controller
             'name' => $request->name,
         ]);
 
-        return redirect()->route('category.index')->with('success', 'Catégorie mise à jour avec succès');
+        return redirect()->route('categories.index')->with('success', 'Catégorie mise à jour avec succès');
     }
 
     /**

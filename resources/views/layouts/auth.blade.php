@@ -17,4 +17,5 @@
 <body class="font-sans antialiased p-8 dark:bg-gray-900 ">
     @yield('content')
 </body>
+
 </html>
