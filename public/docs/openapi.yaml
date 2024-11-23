@@ -1,0 +1,127 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/categories:
+    get:
+      summary: 'Liste des categories'
+      operationId: listeDesCategories
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: ''
+                  body:
+                    -
+                      id: 1
+                      name: Fourniture
+                      created_at: null
+                      updated_at: '2024-11-20T15:34:28.000000Z'
+                    -
+                      id: 2
+                      name: 'Appareils Electroniques'
+                      created_at: null
+                      updated_at: null
+                    -
+                      id: 3
+                      name: 'Objets tranchants'
+                      created_at: null
+                      updated_at: null
+                    -
+                      id: 4
+                      name: Construction
+                      created_at: '2024-11-20T15:36:05.000000Z'
+                      updated_at: '2024-11-20T15:36:05.000000Z'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: ''
+                  body:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: Fourniture
+                        created_at: null
+                        updated_at: '2024-11-20T15:34:28.000000Z'
+                      -
+                        id: 2
+                        name: 'Appareils Electroniques'
+                        created_at: null
+                        updated_at: null
+                      -
+                        id: 3
+                        name: 'Objets tranchants'
+                        created_at: null
+                        updated_at: null
+                      -
+                        id: 4
+                        name: Construction
+                        created_at: '2024-11-20T15:36:05.000000Z'
+                        updated_at: '2024-11-20T15:36:05.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: Fourniture
+                        created_at:
+                          type: string
+                          example: null
+                        updated_at:
+                          type: string
+                          example: '2024-11-20T15:34:28.000000Z'
+      tags:
+        - Endpoints
+  /api/categories/create:
+    get:
+      summary: ''
+      operationId: getApiCategoriesCreate
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: ''
+                  body: []
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: ''
+                  body:
+                    type: array
+                    example: []
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''

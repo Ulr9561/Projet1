@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 
 /**
- * @group Categories
+ * @group Gestion des catégories
  */
 class CategorieController extends Controller
 {
     /**
      * Liste des categories
-     * @authenticated
+     *
      *
      * @return \Illuminate\Http\Response
      */
