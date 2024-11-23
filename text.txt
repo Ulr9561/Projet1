@@ -1,3 +1,0 @@
-composer require --dev knuckleswtf/scribe
-
-php artisan vendor:publish --tag=scribe-config
