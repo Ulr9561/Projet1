@@ -13,3 +13,4 @@ use App\Http\Controllers\Api\ArticleController;
 // Route::get('/categories/create', [CategorieController::class, 'create']);
 
 Route::apiResource('/articles', ArticleController::class);
+Route::apiResource('/categories', CategorieController::class);

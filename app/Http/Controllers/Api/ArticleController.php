@@ -3,69 +3,120 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ArticleResource;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
+
+/**
+ * @group Gestion des articles
+ */
 class ArticleController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Recuperer la liste de tout les articles.
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function index()
     {
-        $articles = Article::with('category')->get();
+        // $articles = Article::with('category')->get();
+        $articles = ArticleResource::collection(Article::with('category')->get());
         return self::apiResponse(true, "", $articles);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Créer un nouvel article.
+     *
+     * @bodyParam name string required.
+     *
+     * @bodyParam price numeric required.
+     *
+     * @bodyParam category string required.
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:1',
-            'category' => 'required|string|exists:categories,name',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'price' => 'required|numeric|min:1',
+                'category' => 'required|string|exists:categories,name',
+            ]);
 
-        if (Article::where('name', '=', $request->name)->first()) {
-            return self::apiResponse(false, "La catégorie existe déjà", status: 204);
+            if (Article::where('name', '=', $request->name)->first()) {
+                return self::apiResponse(false, "L'article existe déjà", status: 205);
+            }
+            $category = Category::where('name', '=', $request->category)->firstOrFail();
+            $article = Article::create([
+                'name' => $request->name,
+                'price' => $request->price,
+                'category_id' => $category->id,
+            ]);
+
+            return self::apiResponse(true, "Article crée avec succès", ['article' => ArticleResource::collection($article)], 201);
+        } catch (\Exception $e) {
+            return self::apiResponse(false, "Une erreur est survenue", ['error' => $e->getMessage()], 500);
         }
 
-        $category = Category::where('');
-        $article = Article::create([
-            'name' => $request->name,
-            'price' => $request->price,
-            'category_id' => $request->category_id,
-        ]);
-
-        return self::apiResponse(true, "Catégorie crée avec succès", ['articles' => $article], 201);
     }
 
     /**
-     * Display the specified resource.
+     * Afficher un article.
+     * @param string id
+     *
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(string $id)
     {
         $article = Article::with('category')->find($id);
-        return self::apiResponse(true, "", $article);
+        return self::apiResponse(true, "", ArticleResource::collection($article));
     }
+
     /**
      * Update the specified resource in storage.
+     *
+     * @bodyParam name string nullable.
+     *
+     * @bodyParam price numeric nullable.
+     *
+     * @bodyParam category string nullable.
      */
     public function update(Request $request, string $id)
     {
-        $article = Article::with('category')->find($id);
-        $article->update(
-            [
-                'name' => $request->name,
-                'price' => $request->price,
-                'category' => $request->category_id,
-            ]
-        );
+        try {
+            if ($request->isNotFilled(['name', 'price', 'category'])) {
+                return self::apiResponse(false, "Aucune donnée fournie pour la mise à jour", status: 200);
+            }
 
-        return self::apiResponse(true, "Article mis a jour avec succès");
+            $request->validate([
+                'name' => 'nullable|string|max:255',
+                'price' => 'nullable|numeric|min:1',
+                'category' => 'nullable|string|exists:categories,name',
+            ]);
+
+            $article = Article::with('category')->find($id);
+            if (!$article) {
+                return self::apiResponse(false, "Article introuvable", status: 404);
+            }
+
+            $data = $request->only(['name', 'price', 'category']);
+            if (isset($data['category'])) {
+                $category = Category::where('name', '=', $data['category'])->first();
+                if ($category) {
+                    $data['category_id'] = $category->id;
+                    unset($data, $data['category']);
+                }
+            }
+            $article->update($data);
+            return self::apiResponse(true, "Article mis a jour avec succès");
+
+        } catch (\Exception $e) {
+            return self::apiResponse(false, "Une error est survenue", status: 500);
+        }
+
     }
 
     /**

@@ -7,6 +7,391 @@ servers:
   -
     url: 'http://localhost'
 paths:
+  /api/articles:
+    get:
+      summary: 'Recuperer la liste de tout les articles.'
+      operationId: recupererLaListeDeToutLesArticles
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: ''
+                  body:
+                    -
+                      id: 1
+                      name: 'Stylo Bille'
+                      price: 100
+                      category:
+                        id: 1
+                        name: Fourniture
+                        created_at: null
+                        updated_at: '2024-11-20T15:34:28.000000Z'
+                      created_at: '2024-11-20T15:28:37.000000Z'
+                      updated_at: '2024-11-20T15:28:37.000000Z'
+                    -
+                      id: 2
+                      name: 'Cahier 200 Pages'
+                      price: 500
+                      category:
+                        id: 1
+                        name: Fourniture
+                        created_at: null
+                        updated_at: '2024-11-20T15:34:28.000000Z'
+                      created_at: '2024-11-20T15:28:37.000000Z'
+                      updated_at: '2024-11-20T15:28:37.000000Z'
+                    -
+                      id: 3
+                      name: 'Ordinateur Portable'
+                      price: 250000
+                      category:
+                        id: 2
+                        name: 'Appareils Electroniques'
+                        created_at: null
+                        updated_at: null
+                      created_at: '2024-11-20T15:28:37.000000Z'
+                      updated_at: '2024-11-20T15:28:37.000000Z'
+                    -
+                      id: 4
+                      name: 'Écran LED 24 Pouces'
+                      price: 150000
+                      category:
+                        id: 2
+                        name: 'Appareils Electroniques'
+                        created_at: null
+                        updated_at: null
+                      created_at: '2024-11-20T15:28:37.000000Z'
+                      updated_at: '2024-11-20T15:28:37.000000Z'
+                    -
+                      id: 5
+                      name: 'Clé USB 32GB'
+                      price: 8000
+                      category:
+                        id: 2
+                        name: 'Appareils Electroniques'
+                        created_at: null
+                        updated_at: null
+                      created_at: '2024-11-20T15:28:37.000000Z'
+                      updated_at: '2024-11-20T15:28:37.000000Z'
+                    -
+                      id: 6
+                      name: 'Couteau de Cuisine'
+                      price: 2000
+                      category:
+                        id: 3
+                        name: 'Objets tranchants'
+                        created_at: null
+                        updated_at: null
+                      created_at: '2024-11-20T15:28:37.000000Z'
+                      updated_at: '2024-11-20T15:28:37.000000Z'
+                    -
+                      id: 7
+                      name: 'Scalpel Médical'
+                      price: 1500
+                      category:
+                        id: 3
+                        name: 'Objets tranchants'
+                        created_at: null
+                        updated_at: null
+                      created_at: '2024-11-20T15:28:37.000000Z'
+                      updated_at: '2024-11-20T15:28:37.000000Z'
+                    -
+                      id: 8
+                      name: 'Tondeuse Électrique'
+                      price: 10000
+                      category:
+                        id: 2
+                        name: 'Appareils Electroniques'
+                        created_at: null
+                        updated_at: null
+                      created_at: '2024-11-20T15:28:37.000000Z'
+                      updated_at: '2024-11-20T15:28:37.000000Z'
+                    -
+                      id: 9
+                      name: 'Règle en Métal 30cm'
+                      price: 300
+                      category:
+                        id: 1
+                        name: Fourniture
+                        created_at: null
+                        updated_at: '2024-11-20T15:34:28.000000Z'
+                      created_at: '2024-11-20T15:28:37.000000Z'
+                      updated_at: '2024-11-20T15:28:37.000000Z'
+                    -
+                      id: 10
+                      name: 'Sac à Dos Résistant'
+                      price: 7000
+                      category:
+                        id: 1
+                        name: Fourniture
+                        created_at: null
+                        updated_at: '2024-11-20T15:34:28.000000Z'
+                      created_at: '2024-11-20T15:28:37.000000Z'
+                      updated_at: '2024-11-20T15:28:37.000000Z'
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: ''
+                  body:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        name: 'Stylo Bille'
+                        price: 100
+                        category:
+                          id: 1
+                          name: Fourniture
+                          created_at: null
+                          updated_at: '2024-11-20T15:34:28.000000Z'
+                        created_at: '2024-11-20T15:28:37.000000Z'
+                        updated_at: '2024-11-20T15:28:37.000000Z'
+                      -
+                        id: 2
+                        name: 'Cahier 200 Pages'
+                        price: 500
+                        category:
+                          id: 1
+                          name: Fourniture
+                          created_at: null
+                          updated_at: '2024-11-20T15:34:28.000000Z'
+                        created_at: '2024-11-20T15:28:37.000000Z'
+                        updated_at: '2024-11-20T15:28:37.000000Z'
+                      -
+                        id: 3
+                        name: 'Ordinateur Portable'
+                        price: 250000
+                        category:
+                          id: 2
+                          name: 'Appareils Electroniques'
+                          created_at: null
+                          updated_at: null
+                        created_at: '2024-11-20T15:28:37.000000Z'
+                        updated_at: '2024-11-20T15:28:37.000000Z'
+                      -
+                        id: 4
+                        name: 'Écran LED 24 Pouces'
+                        price: 150000
+                        category:
+                          id: 2
+                          name: 'Appareils Electroniques'
+                          created_at: null
+                          updated_at: null
+                        created_at: '2024-11-20T15:28:37.000000Z'
+                        updated_at: '2024-11-20T15:28:37.000000Z'
+                      -
+                        id: 5
+                        name: 'Clé USB 32GB'
+                        price: 8000
+                        category:
+                          id: 2
+                          name: 'Appareils Electroniques'
+                          created_at: null
+                          updated_at: null
+                        created_at: '2024-11-20T15:28:37.000000Z'
+                        updated_at: '2024-11-20T15:28:37.000000Z'
+                      -
+                        id: 6
+                        name: 'Couteau de Cuisine'
+                        price: 2000
+                        category:
+                          id: 3
+                          name: 'Objets tranchants'
+                          created_at: null
+                          updated_at: null
+                        created_at: '2024-11-20T15:28:37.000000Z'
+                        updated_at: '2024-11-20T15:28:37.000000Z'
+                      -
+                        id: 7
+                        name: 'Scalpel Médical'
+                        price: 1500
+                        category:
+                          id: 3
+                          name: 'Objets tranchants'
+                          created_at: null
+                          updated_at: null
+                        created_at: '2024-11-20T15:28:37.000000Z'
+                        updated_at: '2024-11-20T15:28:37.000000Z'
+                      -
+                        id: 8
+                        name: 'Tondeuse Électrique'
+                        price: 10000
+                        category:
+                          id: 2
+                          name: 'Appareils Electroniques'
+                          created_at: null
+                          updated_at: null
+                        created_at: '2024-11-20T15:28:37.000000Z'
+                        updated_at: '2024-11-20T15:28:37.000000Z'
+                      -
+                        id: 9
+                        name: 'Règle en Métal 30cm'
+                        price: 300
+                        category:
+                          id: 1
+                          name: Fourniture
+                          created_at: null
+                          updated_at: '2024-11-20T15:34:28.000000Z'
+                        created_at: '2024-11-20T15:28:37.000000Z'
+                        updated_at: '2024-11-20T15:28:37.000000Z'
+                      -
+                        id: 10
+                        name: 'Sac à Dos Résistant'
+                        price: 7000
+                        category:
+                          id: 1
+                          name: Fourniture
+                          created_at: null
+                          updated_at: '2024-11-20T15:34:28.000000Z'
+                        created_at: '2024-11-20T15:28:37.000000Z'
+                        updated_at: '2024-11-20T15:28:37.000000Z'
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                          example: 1
+                        name:
+                          type: string
+                          example: 'Stylo Bille'
+                        price:
+                          type: integer
+                          example: 100
+                        category:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                              example: 1
+                            name:
+                              type: string
+                              example: Fourniture
+                            created_at:
+                              type: string
+                              example: null
+                            updated_at:
+                              type: string
+                              example: '2024-11-20T15:34:28.000000Z'
+                        created_at:
+                          type: string
+                          example: '2024-11-20T15:28:37.000000Z'
+                        updated_at:
+                          type: string
+                          example: '2024-11-20T15:28:37.000000Z'
+      tags:
+        - 'Gestion des articles'
+      security: []
+    post:
+      summary: 'Créer un nouvel article.'
+      operationId: crerUnNouvelArticle
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Gestion des articles'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: required.
+                  example: praesentium
+                  nullable: false
+                price:
+                  type: numeric
+                  description: required.
+                  example: quo
+                  nullable: false
+                category:
+                  type: string
+                  description: required.
+                  example: numquam
+                  nullable: false
+      security: []
+  '/api/articles/{id}':
+    get:
+      summary: 'Afficher un article.'
+      operationId: afficherUnArticle
+      description: ''
+      parameters: []
+      responses:
+        500:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Server Error'
+                properties:
+                  message:
+                    type: string
+                    example: 'Server Error'
+      tags:
+        - 'Gestion des articles'
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Gestion des articles'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: nullable.
+                  example: corporis
+                  nullable: false
+                price:
+                  type: numeric
+                  description: nullable.
+                  example: modi
+                  nullable: false
+                category:
+                  type: string
+                  description: nullable.
+                  example: fugit
+                  nullable: false
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Gestion des articles'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the article.'
+        example: 1
+        required: true
+        schema:
+          type: integer
   /api/categories:
     get:
       summary: 'Liste des categories'
@@ -90,11 +475,21 @@ paths:
                           type: string
                           example: '2024-11-20T15:34:28.000000Z'
       tags:
-        - Endpoints
-  /api/categories/create:
+        - 'Gestion des catégories'
+      security: []
+    post:
+      summary: ''
+      operationId: postApiCategories
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Gestion des catégories'
+      security: []
+  '/api/categories/{id}':
     get:
       summary: ''
-      operationId: getApiCategoriesCreate
+      operationId: getApiCategoriesId
       description: ''
       parameters: []
       responses:
@@ -107,7 +502,11 @@ paths:
                 example:
                   success: true
                   message: ''
-                  body: []
+                  body:
+                    id: 1
+                    name: Fourniture
+                    created_at: null
+                    updated_at: '2024-11-20T15:34:28.000000Z'
                 properties:
                   success:
                     type: boolean
@@ -116,12 +515,54 @@ paths:
                     type: string
                     example: ''
                   body:
-                    type: array
-                    example: []
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        example: 1
+                      name:
+                        type: string
+                        example: Fourniture
+                      created_at:
+                        type: string
+                        example: null
+                      updated_at:
+                        type: string
+                        example: '2024-11-20T15:34:28.000000Z'
       tags:
-        - Endpoints
+        - 'Gestion des catégories'
       security: []
+    put:
+      summary: ''
+      operationId: putApiCategoriesId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Gestion des catégories'
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiCategoriesId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - 'Gestion des catégories'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the category.'
+        example: 1
+        required: true
+        schema:
+          type: integer
 tags:
   -
-    name: Endpoints
+    name: 'Gestion des articles'
+    description: ''
+  -
+    name: 'Gestion des catégories'
     description: ''
